@@ -14,7 +14,7 @@ const validateToken = (req, res ,next) => {
                 return next()
             }
         } catch (error) {
-            return res.json({error: error})
+            return res.json({error: "User not logged in!"})
         }
     }
 };
