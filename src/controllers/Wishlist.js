@@ -18,13 +18,13 @@ module.exports = {
         }
     },
     post: async (req, res) => {
-        const { user, productId } = req.body;
+        const { user, name } = req.body;
         const checkUser = await Wishlist.findOne({where: {user: user}});
         if(checkUser){
-            if(checkUser.productId === productId){
+            if(checkUser.name.includes(name)){
                 await Wishlist.destroy({
                     where: {
-                        productId: checkUser.productId,
+                        name: checkUser.name,
                         user: user
                     }
                 })
