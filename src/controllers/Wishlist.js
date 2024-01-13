@@ -21,17 +21,30 @@ module.exports = {
         const { user, name } = req.body;
         const check = await Wishlist.findOne({where: {user: user, name: name}});
         if(check){
-            const id = check.id;
+            // const id = check.id;
+            // await Wishlist.destroy({
+            //     where: {
+            //         id: id
+            //     }
+            // })
+            res.json("Already in wishlist!");
+        }else{
+            const post = req.body
+            await Wishlist.create(post)
+            res.json("Added to wishlist successfully!")
+        }
+    },
+    delete: async (req, res) => {
+        try {
+            const id = req.params.id;
             await Wishlist.destroy({
                 where: {
                     id: id
                 }
             })
-            res.json("DELETED SUCCESSFULLY");
-        }else{
-            const post = req.body
-            await Wishlist.create(post)
-            res.json(post)
+            res.json("Delete success!");
+        } catch (error) {
+            res.json({error: "Error!"});
         }
     }
 }

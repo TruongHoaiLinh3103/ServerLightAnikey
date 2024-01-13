@@ -23,6 +23,8 @@ const blogs = require("./routers/Blogs");
 app.use("/blog", blogs);
 const account = require("./routers/Account");
 app.use("/account", account);
+const history = require("./routers/History");
+app.use("/history", history);
 // const upload = require("./routers/UploadBlog");
 // app.use("/upload", upload)
 

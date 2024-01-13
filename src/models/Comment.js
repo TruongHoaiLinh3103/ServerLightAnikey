@@ -19,8 +19,16 @@ module.exports = (sequelize, DataTypes) =>  {
         productId: {
             type: DataTypes.INTEGER,
             allowNull: false,
-        }
+        },
+        menu: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
     })
-
+    Comment.associate = (model) => {
+        Comment.hasMany(model.Likes, {
+            onDelete: "cascade",
+        });
+    }
     return Comment;
 }

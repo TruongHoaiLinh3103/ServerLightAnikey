@@ -1,13 +1,14 @@
 const { Op } = require('sequelize');
-const { Comment, Likes } = require("../models");
+const { History } = require("../models");
 
-const Comments = {
+const HistoryService = {
     findAll: ({page, limit, orderBy, sortBy, keyword}) => new Promise(async (resolve, reject) => {
         try {
+
             const query = {}
 
             if (keyword) {
-                query.productId = {[Op.eq]: keyword}
+                query.user = {[Op.substring]: keyword}
             }
 
             const queries = {
@@ -19,16 +20,15 @@ const Comments = {
                 queries.order = [[orderBy, sortBy]]
             }
       
-            const data = await Comment.findAndCountAll({
+            const data = await History.findAndCountAll({
                 where: query,
-                ...queries,
-                include: [Likes]
+                ...queries
             })
 
             const res = {
                 totalPages: Math.ceil(data?.count / limit),
                 totalItems: data?.count,
-                data: data?.rows,
+                data: data?.rows
             }
 
             resolve(res)
@@ -38,4 +38,4 @@ const Comments = {
         }
     })
 }
-module.exports = Comments;
+module.exports = HistoryService;
