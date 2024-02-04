@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>  {
-    const Comment = sequelize.define("Comment", {
+    const Unchat = sequelize.define("Unchat", {
         img: {
             type: DataTypes.STRING,
             allowNull: false
@@ -23,18 +23,12 @@ module.exports = (sequelize, DataTypes) =>  {
         menu: {
             type: DataTypes.STRING,
             allowNull: false
-        },
+        }
     })
-    Comment.associate = (model) => {
-        Comment.hasMany(model.Likes, {
-            onDelete: "cascade",
-        });
-        Comment.hasMany(model.Unchat, {
-            onDelete: "cascade",
-        });
-        Comment.hasMany(model.Notification, {
+    Unchat.associate = (model) => {
+        Unchat.hasMany(model.Likes, {
             onDelete: "cascade",
         });
     }
-    return Comment;
+    return Unchat;
 }

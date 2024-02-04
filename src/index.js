@@ -13,6 +13,8 @@ const db = require("./models")
 
 const comment = require("./routers/Comment");
 app.use("/comment", comment);
+const unchat = require("./routers/Unchat");
+app.use("/unchat", unchat);
 const wishlist = require("./routers/Wishlist");
 app.use("/wishlist", wishlist);
 const auth = require("./routers/Users")
@@ -25,6 +27,10 @@ const account = require("./routers/Account");
 app.use("/account", account);
 const history = require("./routers/History");
 app.use("/history", history);
+const contact = require("./routers/Contact");
+app.use("/contact", contact);
+const notification = require("./routers/Notification");
+app.use("/notification", notification);
 // const upload = require("./routers/UploadBlog");
 // app.use("/upload", upload)
 

@@ -1,12 +1,13 @@
 const { Comment } = require("../models");
 const Comments = require("../services/Comment");
+
 module.exports = {
     get: async (req, res) => {
         try {
-            const { page = 1, limit = 4, orderBy = 'id', sortBy = 'asc', keyword } = req.query
+            const { page = 1, limit = 9, orderBy = 'id', sortBy = 'desc', keyword } = req.query
             const data = await Comments.findAll({
                 page: +page ? +page : 1,
-                limit: +limit ? +limit : 4,
+                limit: +limit ? +limit : 9,
                 orderBy,
                 sortBy,
                 keyword,
@@ -17,9 +18,13 @@ module.exports = {
         }
     },
     post: async(req, res) => {
-        const cmt = req.body;
-        await Comment.create(cmt);
-        res.json(cmt)
+        try {
+            const post = req.body;
+            await Comment.create(post);
+            res.json(post)
+        } catch (error) {
+            res.json({error: "Error!"})
+        }
     },
     patch: async (req, res) => {
         try {

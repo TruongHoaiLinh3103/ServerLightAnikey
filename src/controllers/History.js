@@ -25,15 +25,7 @@ module.exports = {
         if(check){
             if(check.length < 10){
                 if(checkName){
-                    const post = req.body
-                    await History.create(post)
-                    res.json(post)
-                    const id = checkName.id;
-                    await History.destroy({
-                        where: {
-                            id: id
-                        }
-                    })
+                    await History.update(req.body, {where: {id: checkName.id}});
                 }else{
                     const post = req.body
                     await History.create(post)

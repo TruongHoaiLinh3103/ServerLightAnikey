@@ -1,13 +1,14 @@
 const { Op } = require('sequelize');
-const { Comment, Likes, Unchat } = require("../models");
+const { Notification } = require("../models");
 
-const Comments = {
+const NotificationService = {
     findAll: ({page, limit, orderBy, sortBy, keyword}) => new Promise(async (resolve, reject) => {
         try {
+
             const query = {}
 
             if (keyword) {
-                query.productId = {[Op.eq]: keyword}
+                query.auth = {[Op.substring]: keyword}
             }
 
             const queries = {
@@ -19,17 +20,15 @@ const Comments = {
                 queries.order = [[orderBy, sortBy]]
             }
       
-            const data = await Comment.findAndCountAll({
+            const data = await Notification.findAndCountAll({
                 where: query,
-                ...queries,
-                include: [Likes, Unchat],
-                distinct: true
+                ...queries
             })
 
             const res = {
                 totalPages: Math.ceil(data?.count / limit),
                 totalItems: data?.count,
-                data: data?.rows,
+                data: data?.rows
             }
 
             resolve(res)
@@ -39,4 +38,4 @@ const Comments = {
         }
     })
 }
-module.exports = Comments;
+module.exports = NotificationService;

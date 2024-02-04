@@ -4,10 +4,10 @@ const WishlistService = require("../services/Wishlist");
 module.exports = {
     get: async (req, res) => {
         try {
-            const { page = 1, limit = 4, orderBy = 'id', sortBy = 'asc', keyword } = req.query;
+            const { page = 1, limit = 24, orderBy = 'id', sortBy = 'asc', keyword } = req.query;
             const data = await WishlistService.findAll({
                 page: +page ? +page : 1,
-                limit: +limit ? +limit : 4,
+                limit: +limit ? +limit : 24,
                 orderBy,
                 sortBy,
                 keyword
