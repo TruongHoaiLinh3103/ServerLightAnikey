@@ -27,8 +27,6 @@ const account = require("./routers/Account");
 app.use("/account", account);
 const history = require("./routers/History");
 app.use("/history", history);
-const contact = require("./routers/Contact");
-app.use("/contact", contact);
 const notification = require("./routers/Notification");
 app.use("/notification", notification);
 // const upload = require("./routers/UploadBlog");

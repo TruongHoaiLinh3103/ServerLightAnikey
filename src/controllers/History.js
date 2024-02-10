@@ -18,10 +18,10 @@ module.exports = {
         }
     },
     post: async (req, res) => {
-        const { user, name } = req.body;
+        const { user, name, img, menu, rating, productId } = req.body;
         const check = await History.findAll({where: {user: user}});
         const remove = await History.findOne({where: {user: user}});
-        const checkName = await History.findOne({where: {user: user, name: name}});
+        const checkName = await History.findOne({where: {user: user, name: name, img: img, menu: menu, rating: rating, productId: productId}});
         if(check){
             if(check.length < 10){
                 if(checkName){
