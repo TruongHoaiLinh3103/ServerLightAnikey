@@ -1,5 +1,5 @@
 const { Users } = require("../models");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const {sign} = require("jsonwebtoken")
 module.exports = {
     get: async(req,res) => {
