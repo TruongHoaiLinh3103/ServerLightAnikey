@@ -21,8 +21,6 @@ const auth = require("./routers/Users")
 app.use("/auth", auth);
 const likes = require("./routers/Likes");
 app.use("/likes", likes);
-const blogs = require("./routers/Blogs");
-app.use("/blog", blogs);
 const account = require("./routers/Account");
 app.use("/account", account);
 const history = require("./routers/History");
