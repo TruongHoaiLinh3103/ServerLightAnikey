@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        price: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
-        },
         rating: {
             type: DataTypes.TINYINT,
             allowNull: false,
